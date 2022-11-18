@@ -1,0 +1,1 @@
+# [:show, :update, :create, :delete]
