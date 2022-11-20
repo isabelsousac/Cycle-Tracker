@@ -37,7 +37,7 @@ class UsersController < ApplicationController
             @token = JWT.encode({user_id: @user.id}, Rails.application.secrets.secret_key_base[0])
             render json: {user: @user, token: @token}
         else
-            render json: {error: "Invalid credentials"}, status: :unauthorized
+            render json: {error: "Invalid email or password"}, status: :unauthorized
         end
     end
   
