@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :period, :only => [:index, :show, :create, :update]
   resources :cycle 
 
-  get '/login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'login' => 'sessions#destroy'
 end
