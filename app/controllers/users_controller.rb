@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         if @user.save
             redirect_to cycle_path
         else 
-            render :json => status: :unprocessable_entity
+            render :json => :status  
         end
     end
   
