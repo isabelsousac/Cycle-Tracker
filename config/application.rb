@@ -9,8 +9,10 @@ Bundler.require(*Rails.groups)
 module CycleTrackerServer
   class Application < Rails::Application
     config.middleware.insert_before 0, Rack::Cors do
-      origins '*'
-      resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
+      end
     end
 
     # Initialize configuration defaults for originally generated Rails version.

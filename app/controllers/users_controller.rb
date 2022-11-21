@@ -1,40 +1,53 @@
 class UsersController < ApplicationController
+	skip_before_action :is_authorized, only: [:create, :login, :index]
 
-    def new
-      @user = User.new
+	def user_profile
+		render json: @user
+	end
+
+    def index # we don't need this, but it's good for debugging
+		@users = User.all
+      	render json: @users
     end
   
     def create
-      @user = User.new user_params
+      	user_fields = user_params()
+      	user_fields[:take_pill] = false
+      	@user = User.new user_fields
 
-      if @user.save
-        session[:user_id] = @user.id 
-        redirect_to cycle_path
-      else
-        render :json => :new
-      end
-    end
-    
-    def edit
+      	if @user.save
+        	render json: @user, status: :created
+      	end
     end
 
     def update
         @user = User.update user_params_update
 
         if @user.save
-            redirect_to cycle_path
+            render json: @user, status: :ok
         else 
-            render :json => :status  
+            render status: 400 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+        end
+    end
+
+    def login
+        @user = User.find_by :email => params[:email]
+
+        if @user.present? && @user.authenticate(params[:password])
+            @token = JWT.encode({user_id: @user.id}, Rails.application.secrets.secret_key_base[0])
+            render json: {user: @user, token: @token}
+        else
+            render json: {error: "Invalid email or password"}, status: :unauthorized
         end
     end
   
     private
   
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      	params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
     end
 
     def user_params_update
-        params.require(:user).permit(:name, :email)
+        params.require(:user).permit(:first_name, :last_name, :take_pill, :notification_on)
     end
 end
