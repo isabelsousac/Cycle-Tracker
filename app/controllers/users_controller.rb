@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 	end
 
     def index # we don't need this, but it's good for debugging
+		raise 'hell'
 		@users = User.all
       	render json: @users
     end
@@ -16,8 +17,11 @@ class UsersController < ApplicationController
       	@user = User.new user_fields
 
       	if @user.save
-        	render json: @user, status: :created
-      	end
+			@token = JWT.encode({user_id: @user.id}, Rails.application.secrets.secret_key_base[0])
+            render json: {user: @user, token: @token}, status: 201
+		else 
+			render json: @user.errors.full_messages, status: 400
+		end
     end
 
     def update

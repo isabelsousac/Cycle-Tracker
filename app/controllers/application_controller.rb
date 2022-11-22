@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     before_action :is_authorized
 
     def is_authorized
-        render json: {error: "Please, log in first."} unless is_signed_in
+        render json: {error: "Please, log in first."}, status: 401 unless is_signed_in
     end
     
     def is_signed_in

@@ -41,8 +41,8 @@ POST /cycle
 Authorization: Bearer <token>
 
 {
-    "last_period_date": <date>,
-    "cycle_average_time": <integer>,
+    "period_end": <string>,
+    "average_period_days": <integer>,
     "take_pill": <boolean>,
     "notification_on": <boolean>
 }

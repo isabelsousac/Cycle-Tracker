@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_18_120646) do
+ActiveRecord::Schema.define(version: 2022_11_21_233021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_11_18_120646) do
     t.date "period_start"
     t.date "period_end"
     t.string "period_flow"
+    t.integer "average_period_days"
   end
 
   create_table "symptoms", force: :cascade do |t|
