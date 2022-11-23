@@ -36,24 +36,6 @@ class SetupController < ApplicationController
             render json: new_cycle.errors.full_messages, status: 400
         end
 
-
-
-        # user = User.find_by(id: user[:user_id])
-        # user.update user_params 
-
-        # if new_cycle.save && user.save
-        #     cycle = Cycle.find_by(id: new_cycle[:id])
-        #     render json: {
-        #         cycles: [
-        #             cycle: {
-        #                 period_start_highlight: cycle[:period_start],
-        #                 perid_end_highlight: cycle[:period_end]
-        #             }
-        #         ]
-        #     }
-        # else
-        #     render json: {error: "Something went wrong. Please, try again."}, status: 404
-        # end
     end
 
     private
