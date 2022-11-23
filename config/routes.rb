@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root :to => "/"
   resources :users, :only => [:index, :create, :update]
   post '/login' => 'users#login'
   get '/profile' => 'users#user_profile'
