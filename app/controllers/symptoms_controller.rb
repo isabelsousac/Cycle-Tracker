@@ -34,6 +34,7 @@ class SymptomsController < ApplicationController
         symptom = Symptom.find_by(id: params[:id])
         if !symptom.nil?
             symptom.destroy
+            render status: 200
         else
             render json: "Symptom not found.", status: 400
         end

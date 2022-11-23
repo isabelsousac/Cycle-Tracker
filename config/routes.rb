@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   put '/symptoms/:id' => "symptoms#update"
   delete '/cycle/:id/symptoms/:symptom_id' => "symptoms#delete"
 
+  put '/cycle/:id/period_start' => "periods#update_start"
+  put '/cycle/:id/period_end' => "symptoms#update_end"
+  put '/symptoms/:id' => "symptoms#update"
+  delete '/symptoms/:id' => "symptoms#delete"
+
 
 
   resources :period, :only => [:index, :show, :create, :update]
