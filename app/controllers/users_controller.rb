@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 	end
 
     def index # we don't need this, but it's good for debugging
-		raise 'hell'
 		@users = User.all
       	render json: @users
     end
