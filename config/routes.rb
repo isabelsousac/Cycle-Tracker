@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   get '/profile' => 'users#user_profile'
   post '/setup' => 'setup#setup_user_cycle'
 
-  resources :symptoms, :only => [:show, :update, :create, :delete]
+  post '/cycle/:id/symptoms' => "symptoms#create"
+  get '/symptoms/:id' => "symptoms#show"
+  put '/symptoms/:id' => "symptoms#update"
+  delete '/cycle/:id/symptoms/:symptom_id' => "symptoms#delete"
+
+
+
   resources :period, :only => [:index, :show, :create, :update]
   resources :cycle, :only => [:show, :create, :update]
 end
