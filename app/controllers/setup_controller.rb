@@ -20,22 +20,15 @@ class SetupController < ApplicationController
 
         if new_cycle.save
             if @user.save
-                cycle = Cycle.find_by(id: new_cycle[:id])
-                render json: {
-                    cycles: [
-                        cycle: {
-                            period_start_highlight: cycle[:period_start],
-                            perid_end_highlight: cycle[:period_end]
-                        }
-                    ]
-                }, status: 200
+                create_next_cycles(new_cycle.end_date, new_cycle.average_period_days)
+                next_cycles = Cycle.select("id, period_start, period_end").where(user_id: @user.id)
+                render json: next_cycles, status: 200
             else
                 render json: new_cycle.errors.full_messages, status: 400    
             end
         else
             render json: new_cycle.errors.full_messages, status: 400
         end
-
     end
 
     private
@@ -53,5 +46,24 @@ class SetupController < ApplicationController
 
     def user_params
         params.permit(:notification_on, :take_pill)
+    end
+
+    def create_next_cycles(last_cycle_day_date, average_period_days)
+        last_cycle_end = last_cycle_day_date
+        for i in 0..12 do
+            cycle_start = last_cycle_end + 1.days
+            cycle_end = cycle_start + CYCLE_TOTAL_DAYS.days
+            period_start = cycle_start
+            period_end = cycle_start + average_period_days.days
+            Cycle.create(
+                :start_date => cycle_start,
+                :end_date => cycle_end, 
+                :period_start => period_start, 
+                :period_end => period_end, 
+                :average_period_days => average_period_days, 
+                :user_id => @user.id
+            )
+            last_cycle_end = cycle_end
+        end
     end
 end
