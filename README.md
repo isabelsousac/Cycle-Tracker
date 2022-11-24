@@ -1,6 +1,6 @@
 # Cycle tracker
 
-Cycle tracker is a website that helps women for monitoring their menstrual cycle and helping to predict periods. It also allow users to record additional information, such as symptoms that occured in a selected day and period flow.
+Cycle tracker is a website that helps women for monitoring their menstrual cycle and helping to predict periods. It also allows users to record additional information, such as symptoms that occured in a selected day and period flow.
 
 After sign up, the user is redirected to the "About you" page, where they insert useful information that will be used to predict future periods. 
 
@@ -14,20 +14,21 @@ Project designed by [Isabel](https://github.com/isabelsousac), [Gissell](https:/
 
 This repository application can be accessed through [here](https://cycle-tracker-backend.herokuapp.com/)
 
-## Snapshot
-
-
-![SoundWave Website](app/assets/images/snapshot.png "Website")
-
 ## Stack
  * Ruby
  * Ruby on Rails
- * CSS + Bootstrap
- * HTML
- * Spotify API - **rSpotify gem**
+ * JWT API
+ * PostgreSQL
+
+ ## API endpoints
+ [Working in progress.](API.md)
+
 
 ## Future improvements
-This website is still giving their first steps. I plan to use other API's to grab more information and images from the artists. Users should have followers, so then they can find others songs through each other. I'm also open to suggestions.
+* Make a better prediction of the periods after the user logs 3 of them.
+* More API endpoints are still to be implemented, such as access to single period information and list of all symptoms logged during one entire cycle.
+* Create a graphic about the main symptoms women tend to have during specifics days of cycle - all women will have access to it, but no identity will be reveled.
+
 
 ## Acknowledgements
 Special thanks to [The Blade](https://github.com/wofockham) and  [Loden Gendun](https://github.com/Tenzang) for all the patience and guidance.
