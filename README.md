@@ -8,7 +8,7 @@ This project was designed for project2 for the Immersive Software Engineer cours
 
 This repository contains the backend code project. React repository is [here](https://github.com/Gissell10/period-traker).
 
-Project designed by [Isabel](https://github.com/isabelsousac), [Gissell](https://github.com/Gissell10) and Kylie.
+Project designed by [Isabel](https://github.com/isabelsousac), [Gissell](https://github.com/Gissell10) and [Kylie](https://github.com/kyliexmq).
 
 ## Website
 
