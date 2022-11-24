@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	skip_before_action :is_authorized, only: [:create, :login, :index]
 
 	def user_profile
-		render json: @user
+		render json: @user, :except => [:password, :password_digest], status: 201
 	end
 
     def index # we don't need this, but it's good for debugging

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post '/setup' => 'setup#setup_user_cycle'
 
   get '/cycles' => 'cycles#index'
-  post '/cycle/:id/symptoms' => "symptoms#create"
+  post '/cycle/symptoms' => "symptoms#create"
   get '/symptoms/:id' => "symptoms#show"
   put '/symptoms/:id' => "symptoms#update"
   delete '/cycle/:id/symptoms/:symptom_id' => "symptoms#delete"
