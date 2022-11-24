@@ -1,6 +1,6 @@
-# Cycle tracker
+# Anita - Cycle tracker
 
-Cycle tracker is a website that helps women for monitoring their menstrual cycle and helping to predict periods. It also allows users to record additional information, such as symptoms that occured in a selected day and period flow.
+Anita is a website that helps women for monitoring their menstrual cycle and helping to predict periods. It also allows users to record additional information, such as symptoms that occured in a selected day and period flow.
 
 After sign up, the user is redirected to the "About you" page, where they insert useful information that will be used to predict future periods. 
 
@@ -21,7 +21,7 @@ This repository application can be accessed through [here](https://cycle-tracker
  * PostgreSQL
 
  ## API endpoints
- [Working in progress.](API.md)
+ [Here](API.md). Some of them are still to be implemented.
 
 
 ## Future improvements
