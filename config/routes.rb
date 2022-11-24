@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/profile' => 'users#user_profile'
   post '/setup' => 'setup#setup_user_cycle'
 
+  get '/cycles' => 'cycles#index'
   post '/cycle/:id/symptoms' => "symptoms#create"
   get '/symptoms/:id' => "symptoms#show"
   put '/symptoms/:id' => "symptoms#update"
