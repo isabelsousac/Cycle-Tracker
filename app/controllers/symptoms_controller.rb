@@ -1,8 +1,13 @@
 # [:show, :update, :create, :delete]
 class SymptomsController < ApplicationController
-    def create # post '/cycle/:id/symptoms' => "symptoms#create"
+    def create 
         new_symptom = Symptom.new symptom_params
-        new_symptom[:cycle_id] = params[:id]
+        cycle = Cycle.where(["start_date <= :date AND :date <= end_date AND user_id = :user_id", { date: symptom_params[:date], user_id: @user.id }])[0]
+        if cycle.nil?
+            render status: 500
+            return
+        end
+        new_symptom[:cycle_id] = cycle.id
         if new_symptom.save
             render json: new_symptom, status: 201
         else
@@ -43,7 +48,7 @@ class SymptomsController < ApplicationController
     private
 
     def symptom_params
-        params.permite(:date, :symptom, :level)
+        params.permit(:date, :symptom, :level)
     end
 end
 

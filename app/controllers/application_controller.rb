@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
         if auth_header
             user_token = auth_header.split(' ')[1] # grabs only user token from all auth header
             begin
-                @user_id = JWT.decode(user_token, Rails.application.secrets.secret_key_base[0])[0]["user_id"] # the encoded jwt secret returns an array, we take the first element that belongs to the user, inside this element has the user hash. The user id is what we need
+                @user_id = JWT.decode(user_token, Rails.application.credentials.secret_key_base[0])[0]["user_id"] # the encoded jwt secret returns an array, we take the first element that belongs to the user, inside this element has the user hash. The user id is what we need
             rescue JWT::DecodeError
                 nil 
             end

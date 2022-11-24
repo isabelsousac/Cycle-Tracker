@@ -11,7 +11,7 @@ class CyclesController < ApplicationController
         if  !next_cycles.nil?
             render json: next_cycles, status: 200
         else
-            next_cycles.errors.full_messages, status: 500
+            render json: next_cycles.errors.full_messages, status: 500
         end
     end
 

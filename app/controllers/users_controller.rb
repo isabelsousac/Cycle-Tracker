@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	skip_before_action :is_authorized, only: [:create, :login, :index]
 
 	def user_profile
-		render json: @user
+		render json: @user, :except => [:password, :password_digest], status: 201
 	end
 
     def index # we don't need this, but it's good for debugging
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       	@user = User.new user_fields
 
       	if @user.save
-			@token = JWT.encode({user_id: @user.id}, Rails.application.secrets.secret_key_base[0])
+			@token = JWT.encode({user_id: @user.id}, Rails.application.credentials.secret_key_base[0])
             render json: {
                 user: @user, 
                 token: @token
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
         @user = User.find_by :email => params[:email]
 
         if @user.present? && @user.authenticate(params[:password])
-            @token = JWT.encode({user_id: @user.id}, Rails.application.secrets.secret_key_base[0])
+            @token = JWT.encode({user_id: @user.id}, Rails.application.credentials.secret_key_base[0])
             render json: {user: @user, token: @token}, :except => [:password, :password_digest], status: 200
         else
             render json: {error: "Invalid email or password"}, status: :unauthorized
